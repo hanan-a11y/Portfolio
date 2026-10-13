@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Abdul Hanan – Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- Tokens ---------- */
+:root{
+  --bg:#f5ede0;
+  --bg-deep:#ecdfcb;
+  --surface:#fbf6ec;
+  --ink:#2a1216;
+  --muted:#6e5053;
+  --line:rgba(120,24,34,.22);
+  --crimson:#b50f25;
+  --crimson-soft:rgba(181,15,37,.10);
+  --brass:#8d6d2c;
+  --glow:rgba(200,30,45,.22);
+  --serif:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  --sans:"Jost","Helvetica Neue",Arial,sans-serif;
+
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0c0508;
+    --bg-deep:#150709;
+    --surface:#170a0d;
+    --ink:#f1e6d6;
+    --muted:#b49a96;
+    --line:rgba(214,178,106,.20);
+    --crimson:#e0243a;
+    --crimson-soft:rgba(224,36,58,.12);
+    --brass:#d6b26a;
+    --glow:rgba(224,36,58,.34);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0c0508;
+  --bg-deep:#150709;
+  --surface:#170a0d;
+  --ink:#f1e6d6;
+  --muted:#b49a96;
+  --line:rgba(214,178,106,.20);
+  --crimson:#e0243a;
+  --crimson-soft:rgba(224,36,58,.12);
+  --brass:#d6b26a;
+  --glow:rgba(224,36,58,.34);
+}
+
+/* ---------- Base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(76px + env(safe-area-inset-top,0px));scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:1.0625rem;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+img,svg{max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;margin:0}
+p{margin:0 0 1em}
+:focus-visible{outline:2px solid var(--crimson);outline-offset:3px;border-radius:2px}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+
+/* ---------- Header ---------- */
+.site-header{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{font-family:var(--serif);font-size:1.5rem;font-weight:600;text-decoration:none;letter-spacing:.01em;display:flex;align-items:center;gap:.6rem}
+.brand i{width:10px;height:10px;border-radius:50% 0 50% 0;background:var(--crimson);transform:rotate(45deg);display:inline-block;transition:transform .6s cubic-bezier(.34,1.56,.64,1)}
+.brand:hover i{transform:rotate(225deg) scale(1.3)}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2rem;align-items:center}
+nav a{position:relative;text-decoration:none;font-size:.95rem;color:var(--muted);transition:color .3s ease;padding:.4rem 0}
+nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--crimson);transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.65,0,.35,1)}
+nav a:hover{color:var(--ink)}
+nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.tools{display:flex;gap:.5rem;align-items:center}
+.icon-btn{
+  width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);
+  display:grid;place-items:center;cursor:pointer;font-size:1.05rem;padding:0;
+  transition:border-color .3s ease,background .3s ease,transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease;
+}
+.icon-btn:hover{border-color:var(--crimson);background:var(--crimson-soft);transform:scale(1.1);box-shadow:0 0 0 4px var(--crimson-soft)}
+.icon-btn:active{transform:scale(.92)}
+.ic{display:block;line-height:1;transition:transform .6s cubic-bezier(.65,0,.35,1)}
+.icon-btn:hover .ic{transform:rotate(90deg)}
+.icon-btn.flip .ic{transform:rotate(180deg)}
+.icon-btn.flip:hover .ic{transform:rotate(270deg)}
+.bars{position:relative;width:18px;height:12px;display:block}
+.bars i{position:absolute;left:0;width:100%;height:1.5px;background:currentColor;border-radius:2px;transition:transform .4s cubic-bezier(.65,0,.35,1),opacity .25s ease,top .4s cubic-bezier(.65,0,.35,1)}
+.bars i:nth-child(1){top:0}
+.bars i:nth-child(2){top:5px}
+.bars i:nth-child(3){top:10px}
+[aria-expanded="true"] .bars i:nth-child(1){top:5px;transform:rotate(45deg)}
+[aria-expanded="true"] .bars i:nth-child(2){opacity:0}
+[aria-expanded="true"] .bars i:nth-child(3){top:5px;transform:rotate(-45deg)}
+.menu-btn{display:none}
+@media (max-width:780px){
+  .menu-btn{display:grid}
+  nav{position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+  nav.open{display:block}
+  nav ul{flex-direction:column;align-items:stretch;gap:0;padding:.5rem 1.25rem 1rem}
+  nav a{display:block;padding:.85rem 0;border-bottom:1px solid var(--line);font-size:1.05rem}
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;
+  background:
+    radial-gradient(60% 70% at 72% 45%,var(--glow),transparent 70%),
+    linear-gradient(180deg,var(--bg),var(--bg-deep));
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:1rem;min-height:calc(100svh - 70px);padding:2.5rem 0}
+.hero-text{position:relative;z-index:2}
+.kanji{font-family:var(--serif);color:var(--crimson);font-size:1.15rem;letter-spacing:.35em;margin-bottom:1.4rem;display:block}
+.hero h1{font-size:clamp(3rem,7.2vw,5.6rem);font-weight:500;letter-spacing:-.01em}
+.hero .role{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.8rem);color:var(--brass);margin:.9rem 0 1.4rem}
+.hero .tagline{max-width:34ch;color:var(--muted);font-size:1.1rem}
+.btns{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:2rem}
+.btn{
+  position:relative;overflow:hidden;isolation:isolate;display:inline-block;text-decoration:none;
+  padding:.85rem 1.6rem;border:1px solid var(--crimson);font-size:.98rem;font-weight:400;letter-spacing:.02em;
+  transition:color .4s ease,transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease;
+}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.65,0,.35,1)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 26px -12px var(--glow)}
+.btn:hover::before{transform:scaleX(1)}
+.btn:active{transform:translateY(0) scale(.97);transition-duration:.12s}
+.btn.solid{background:var(--crimson);color:#fff}
+.btn.solid::before{background:#7a0a1b}
+.btn.ghost{color:var(--ink)}
+.btn.ghost::before{background:var(--crimson)}
+.btn.ghost:hover{color:#fff}
+
+/* 3D scene */
+.scene{
+  position:relative;height:min(78vh,620px);min-height:380px;
+  perspective:1300px;perspective-origin:50% 40%;
+  touch-action:pan-y;cursor:grab;
+}
+.scene:active{cursor:grabbing}
+.flower{
+  position:absolute;left:50%;top:46%;width:0;height:0;
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.seg{position:absolute;transform-style:preserve-3d;transform-origin:50% 100%}
+.face{position:absolute;left:0;right:0;top:-1px;bottom:0}
+.petal-face::after{content:"";position:absolute;left:49%;width:2%;top:0;bottom:0;background:rgba(255,205,190,.28)}
+.anther{position:absolute;left:-2px;top:-9px;width:7px;height:12px;border-radius:50%;background:#2a070b;box-shadow:0 0 6px rgba(255,80,90,.5)}
+.stem-plane{position:absolute;top:0;background:linear-gradient(180deg,#6b7a45,#3a4a28 55%,rgba(40,50,25,0))}
+.caption{
+  position:absolute;left:0;right:0;bottom:.4rem;text-align:center;
+  font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1rem;pointer-events:none;
+}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;min-height:0;padding:2rem 0 1rem;text-align:center}
+  .hero .tagline{margin-inline:auto}
+  .btns{justify-content:center}
+  .scene{height:min(92vw,440px);min-height:340px;order:2}
+}
+
+/* ---------- Sections ---------- */
+section.block{padding:clamp(4rem,9vw,7rem) 0;border-bottom:1px solid var(--line)}
+section.block:nth-of-type(even){background:var(--bg-deep)}
+.sec-head{display:flex;align-items:center;gap:1.2rem;margin-bottom:2.8rem}
+.sec-head h2{font-size:clamp(2.1rem,4.6vw,3.2rem)}
+.sec-head::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--crimson),transparent)}
+
+/* About */
+.about{display:grid;grid-template-columns:1.5fr 1fr;gap:3rem;align-items:start}
+.about p{max-width:62ch;font-size:1.12rem;color:var(--ink)}
+.facts{display:grid;gap:0;border-left:1px solid var(--crimson);padding-left:1.8rem}
+.fact{padding:.9rem 0;border-bottom:1px solid var(--line)}
+.fact:last-child{border-bottom:0}
+.fact b{display:block;font-family:var(--serif);font-size:2.2rem;font-weight:500;color:var(--crimson);line-height:1.1}
+.fact span{color:var(--muted);font-size:.95rem}
+@media (max-width:820px){.about{grid-template-columns:1fr;gap:2rem}}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2.2rem 3rem}
+.skills h3{font-size:1.55rem;margin-bottom:1rem;color:var(--brass)}
+.chips{display:flex;flex-wrap:wrap;gap:.55rem}
+.chip{padding:.3rem .9rem;border:1px solid var(--line);border-radius:999px;font-size:.92rem;background:var(--surface);transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .3s ease,background .3s ease}
+.chip:hover{transform:translateY(-3px);border-color:var(--crimson);background:var(--crimson-soft)}
+
+/* Projects */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.6rem;perspective:1100px}
+.card{
+  position:relative;background:var(--surface);border:1px solid var(--line);padding:1.9rem 1.7rem 1.6rem;
+  display:flex;flex-direction:column;transform-style:preserve-3d;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.card::before{content:"";position:absolute;left:-1px;top:-1px;width:44px;height:3px;background:var(--crimson)}
+.card:hover{border-color:var(--crimson);box-shadow:0 18px 40px -22px var(--glow)}
+.card h3{font-size:1.65rem;margin-bottom:.7rem}
+.card p{color:var(--muted);font-size:1rem;flex:1}
+.card .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0 1.1rem}
+.card .tags span{font-size:.82rem;color:var(--brass);border-bottom:1px solid var(--line);padding-bottom:1px}
+.card a.go{font-size:.95rem;text-decoration:none;color:var(--crimson);align-self:flex-start;padding-bottom:2px;background:linear-gradient(var(--crimson),var(--crimson)) left bottom/100% 1px no-repeat;transition:background-size .35s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+.card a.go:hover{background-size:100% 3px;transform:translateY(-2px)}
+
+/* Timeline (a true sequence) */
+.timeline{position:relative;margin-left:.5rem;padding-left:2.2rem;border-left:1px solid var(--crimson)}
+.step{position:relative;padding-bottom:2.4rem}
+.step:last-child{padding-bottom:0}
+.step::before{
+  content:"";position:absolute;left:calc(-2.2rem - 6px);top:.55rem;width:11px;height:11px;
+  background:var(--crimson);border-radius:50% 0 50% 0;transform:rotate(45deg)
+}
+.step time{font-size:.92rem;color:var(--brass)}
+.step h3{font-size:1.6rem;margin:.15rem 0 .1rem}
+.step .place{color:var(--muted);font-style:italic;font-family:var(--serif);font-size:1.15rem}
+.step p{max-width:62ch;margin:.5rem 0 0;color:var(--ink)}
+
+/* Contact */
+.contact{text-align:center;max-width:640px;margin-inline:auto}
+.contact p{color:var(--muted);font-size:1.12rem}
+.contact .mail{
+  display:inline-block;margin:.6rem 0 1.6rem;font-family:var(--serif);font-size:clamp(1.5rem,4.6vw,2.4rem);
+  text-decoration:none;border-bottom:1px solid var(--crimson);word-break:break-word
+}
+.contact .mail{transition:color .3s ease,border-color .3s ease}
+.contact .mail:hover{color:var(--crimson);border-bottom-width:2px}
+.links{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center}
+.links a{
+  position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:.6rem;
+  padding:.6rem 1.3rem;border:1px solid var(--line);text-decoration:none;font-size:.95rem;
+  transition:border-color .35s ease,color .35s ease,transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease;
+}
+.links a::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--crimson);transform:translateY(101%);transition:transform .45s cubic-bezier(.65,0,.35,1)}
+.links a:hover{border-color:var(--crimson);color:#fff;transform:translateY(-3px);box-shadow:0 12px 26px -12px var(--glow)}
+.links a:hover::before{transform:translateY(0)}
+.links a:active{transform:translateY(0) scale(.97);transition-duration:.12s}
+.links a svg{width:18px;height:18px;flex:none;transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.links a:hover svg{transform:translate(2px,-2px) rotate(-8deg) scale(1.18)}
+
+footer{padding:2rem 0 2.4rem;text-align:center;color:var(--muted);font-size:.9rem}
+
+/* ---------- Loader: a spider lily blooming ---------- */
+html.loading{overflow:hidden}
+.loader{
+  position:fixed;inset:0;z-index:100;display:grid;place-content:center;justify-items:center;gap:1.1rem;
+  background:radial-gradient(60% 60% at 50% 45%,var(--glow),transparent 72%),var(--bg);
+  transition:opacity .9s ease,visibility .9s,transform 1s cubic-bezier(.65,0,.35,1);
+}
+.loader.done{opacity:0;visibility:hidden;transform:scale(1.06)}
+.bloom{display:block;width:min(58vw,250px);height:auto;overflow:visible;filter:drop-shadow(0 0 18px var(--glow));animation:slowspin 20s linear infinite}
+.lp{transform-box:fill-box;transform-origin:50% 100%;animation:unfold 1.2s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * .15s)}
+.ls{fill:none;stroke:#ff6a74;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw .9s ease forwards;animation-delay:calc(1s + var(--i) * .08s)}
+.la{fill:#2a070b;stroke:#ff6a74;stroke-width:.8;opacity:0;transform-box:fill-box;transform-origin:center;animation:pop .45s cubic-bezier(.34,1.56,.64,1) forwards;animation-delay:calc(1.7s + var(--i) * .08s)}
+.loader-name{font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.2rem);letter-spacing:.08em;margin-top:.4rem}
+.loader-line{width:170px;height:1px;background:var(--line);overflow:hidden}
+.loader-line i{display:block;height:100%;background:var(--crimson);transform-origin:left;transform:scaleX(0);animation:loadbar 2.4s cubic-bezier(.65,0,.35,1) forwards}
+.loader-sub{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:1.05rem;animation:breathe 2.2s ease-in-out infinite}
+@keyframes slowspin{to{transform:rotate(360deg)}}
+@keyframes unfold{0%{transform:scale(.04) rotate(-55deg);opacity:0}55%{opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+@keyframes loadbar{to{transform:scaleX(1)}}
+@keyframes breathe{50%{opacity:.45}}
+
+/* ---------- Effects ---------- */
+.scroll-bar{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;background:linear-gradient(90deg,var(--crimson),var(--brass));transform-origin:left;transform:scaleX(0);box-shadow:0 0 12px var(--glow);pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .5s ease;background:radial-gradient(360px circle at var(--mx,70%) var(--my,45%),rgba(255,70,90,.17),transparent 62%)}
+.hero.lit::after{opacity:1}
+.drift{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.drift span{position:absolute;top:0;border-radius:100% 0 100% 0;background:linear-gradient(135deg,#ff4a58,#8e0c1c);will-change:transform,translate;animation:fall linear infinite,sway ease-in-out infinite alternate}
+@keyframes fall{from{translate:0 -40px}to{translate:0 var(--hh,900px)}}
+@keyframes sway{from{transform:translateX(-34px) rotate(-30deg) rotateX(0deg)}to{transform:translateX(44px) rotate(55deg) rotateX(180deg)}}
+.js .hero-text>*{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.ready .hero-text>*{opacity:1;transform:none}
+.hero-text>:nth-child(1){transition-delay:.2s}
+.hero-text>:nth-child(2){transition-delay:.38s}
+.hero-text>:nth-child(3){transition-delay:.56s}
+.hero-text>:nth-child(4){transition-delay:.72s}
+.hero-text>:nth-child(5){transition-delay:.9s}
+.js .sec-head::after{transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.65,0,.35,1) .15s}
+.js .sec-head.in::after{transform:scaleX(1)}
+.js .reveal:not(.in){opacity:0}
+.reveal.in{animation:rise .85s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .loader *,.drift span,.loader-sub{animation:none!important}
+  .ls{stroke-dashoffset:0}
+  .la{opacity:1}
+  .js .hero-text>*,.js .sec-head::after{transition:none}
+  .reveal.in{animation:none}
+  .card{transition:none}
+  .btn,.btn::before,.links a,.links a::before,.links a svg,.icon-btn,.ic,.chip,.card a.go,nav a::after,.bars i,.brand i{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader" role="status" aria-live="polite">
+  <div id="loaderArt"></div>
+  <div class="loader-name" id="loaderName"></div>
+  <div class="loader-line"><i></i></div>
+  <div class="loader-sub">Opening the bloom</div>
+</div>
+<div class="scroll-bar" id="scrollBar" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#top" id="brand"><i></i><span id="brandName"></span></a>
+    <div class="tools">
+      <nav id="nav" aria-label="Main">
+        <ul id="navList"></ul>
+      </nav>
+      <button class="icon-btn" id="themeBtn" aria-label="Switch between light and dark theme" title="Switch theme"><span class="ic">◐</span></button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span class="bars"><i></i><i></i><i></i></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero">
+    <div class="drift" id="drift" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hero-text">
+        <span class="kanji" aria-hidden="true">彼岸花</span>
+        <h1 id="heroName"></h1>
+        <div class="role" id="heroRole"></div>
+        <p class="tagline" id="heroTagline"></p>
+        <div class="btns">
+          <a class="btn solid" href="#projects">View my work</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="scene" id="scene" aria-label="Interactive 3D red spider lily. Drag to turn it.">
+        <div class="flower" id="flower"></div>
+        <div class="caption">Red spider lily, Lycoris radiata</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about"><div class="wrap">
+    <div class="sec-head"><h2>About</h2></div>
+    <div class="about"><div id="aboutText"></div><div class="facts" id="facts"></div></div>
+  </div></section>
+
+  <section class="block" id="skills"><div class="wrap">
+    <div class="sec-head"><h2>Skills</h2></div>
+    <div class="skills" id="skillsGrid"></div>
+  </div></section>
+
+  <section class="block" id="projects"><div class="wrap">
+    <div class="sec-head"><h2>Projects</h2></div>
+    <div class="projects" id="projectsGrid"></div>
+  </div></section>
+
+  <section class="block" id="journey"><div class="wrap">
+    <div class="sec-head"><h2>Journey</h2></div>
+    <div class="timeline" id="timeline"></div>
+  </div></section>
+
+  <section class="block" id="contact"><div class="wrap">
+    <div class="sec-head"><h2>Contact</h2></div>
+    <div class="contact">
+      <p id="contactNote"></p>
+      <a class="mail" id="contactMail" href="#"></a>
+      <div class="links" id="contactLinks"></div>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap" id="footerText"></div></footer>
+
+<!-- ============ YOUR DATA: edit only this block ============ -->
+<script type="application/json" id="data">
+{
+  "name": "Abdul Hanan",
+  "role": "Software Developer & Full-Stack Engineer",
+  "tagline": "BSCS student building database-driven web, desktop and AI-powered applications that solve real-world problems.",
+  "about": {
+    "paragraphs": [
+      "I am a BSCS student and aspiring software engineer with hands-on experience in full-stack web development, desktop application development, database management, enterprise HR systems, AI-powered applications and responsive web design.",
+      "I have built practical solutions ranging from inventory and business management systems to employee record management, AI-assisted database interaction and multi-role e-commerce platforms. Beyond code, I configure Windows Server environments, set up SQL Server connectivity across local networks, and troubleshoot application and database integration issues using tools like Postman and Selenium.",
+      "I also explore creative web experiences, product branding, responsive landing pages and cinematic advertising concepts. I keep learning by building projects, debugging complex issues, improving application security, and exploring how modern AI can make traditional business software more intelligent, accessible and efficient."
+    ],
+    "facts": [
+      { "value": "BSCS", "label": "Degree in progress" },
+      { "value": "Full-stack", "label": "Web and desktop development" },
+      { "value": "AI", "label": "Assisted business software" }
+    ]
+  },
+  "skills": [
+    { "group": "Languages and frameworks", "items": ["C#", ".NET", "ASP.NET Core MVC", "Java", "React", "React Native", "Next.js", "Node.js", "Express.js"] },
+    { "group": "Data and integration", "items": ["SQL Server", "Firebase", "REST API integration"] },
+    { "group": "Infrastructure and testing", "items": ["Windows Server", "SQL Server networking", "Postman", "Selenium", "Troubleshooting"] },
+    { "group": "Also exploring", "items": ["AI-powered applications", "Application security", "Responsive design", "Product branding", "Cinematic web concepts"] }
+  ],
+  "projects": [
+    {
+      "title": "Inventory and business management system",
+      "description": "A database-driven application for tracking stock and running day-to-day business operations, with structured architecture and a user-friendly interface.",
+      "tags": ["Database", "Business software"],
+      "link": ""
+    },
+    {
+      "title": "Employee record management system",
+      "description": "An enterprise HR system for managing employee records, built around reliable data handling and clear workflows.",
+      "tags": ["Enterprise HR", "Database"],
+      "link": ""
+    },
+    {
+      "title": "AI-assisted database interaction",
+      "description": "An application that lets people work with a database through AI, making traditional business software more intelligent and accessible.",
+      "tags": ["AI", "Database"],
+      "link": ""
+    },
+    {
+      "title": "Multi-role e-commerce platform",
+      "description": "An online store with separate experiences for different user roles, covering product management, ordering and responsive design.",
+      "tags": ["Full-stack", "E-commerce"],
+      "link": ""
+    },
+    {
+      "title": "Creative web and branding concepts",
+      "description": "Responsive landing pages, product branding and cinematic advertising concepts that combine technical implementation with visual presentation.",
+      "tags": ["Landing pages", "Branding"],
+      "link": ""
+    }
+  ],
+  "journey": [
+    { "period": "Present", "title": "Bachelor of Science in Computer Science", "place": "University of Lahore", "details": "Studying computer science while building full-stack, desktop and AI-powered projects." }
+  ],
+  "contact": {
+    "note": "I'm open to software development opportunities and collaborations. Send me a message and I'll reply soon.",
+    "email": "hananpr9@gmail.com",
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/hanan-a11y/Htmlcss" }
+    ]
+  }
+}
+</script>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Loader artwork (built first so it paints immediately) ---------- */
+  var docEl = document.documentElement;
+  docEl.classList.add('js', 'loading');
+  (function buildLoader(){
+    var P = '', S = '', i;
+    for (i = 0; i < 6; i++) P += '<g transform="rotate(' + (i * 60) + ')"><path class="lp" style="--i:' + i + '" fill="url(#lg)" d="M0 0C-8 -26 -14 -56 -4 -88Q0 -96 6 -90C12 -58 8 -26 0 0Z"/></g>';
+    for (i = 0; i < 8; i++) S += '<g transform="rotate(' + (i * 45 + 22) + ')"><path class="ls" pathLength="1" style="--i:' + i + '" d="M0 0C2 -30 22 -58 50 -70"/><circle class="la" style="--i:' + i + '" cx="50" cy="-70" r="3.4"/></g>';
+    document.getElementById('loaderArt').innerHTML =
+      '<svg class="bloom" viewBox="-110 -110 220 220" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#6e0a16"/><stop offset="1" stop-color="#ff3b4a"/></linearGradient></defs>' + P + S + '</svg>';
+  })();
+
+  /* ---------- Render the page from JSON ---------- */
+  var D = JSON.parse(document.getElementById('data').textContent);
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function $(id){return document.getElementById(id)}
+
+  document.title = D.name + " – Portfolio";
+  $('brandName').textContent = D.name;
+  $('heroName').textContent = D.name;
+  $('heroRole').textContent = D.role;
+  $('heroTagline').textContent = D.tagline;
+
+  var nav = [['about','About'],['skills','Skills'],['projects','Projects'],['journey','Journey'],['contact','Contact']];
+  $('navList').innerHTML = nav.map(function(n){return '<li><a href="#'+n[0]+'">'+n[1]+'</a></li>'}).join('');
+
+  $('aboutText').innerHTML = D.about.paragraphs.map(function(p){return '<p>'+esc(p)+'</p>'}).join('');
+  $('facts').innerHTML = D.about.facts.map(function(f){return '<div class="fact"><b>'+esc(f.value)+'</b><span>'+esc(f.label)+'</span></div>'}).join('');
+
+  $('skillsGrid').innerHTML = D.skills.map(function(g){
+    return '<div><h3>'+esc(g.group)+'</h3><div class="chips">'+g.items.map(function(i){return '<span class="chip">'+esc(i)+'</span>'}).join('')+'</div></div>';
+  }).join('');
+
+  $('projectsGrid').innerHTML = D.projects.map(function(p){
+    return '<article class="card"><h3>'+esc(p.title)+'</h3><p>'+esc(p.description)+'</p>'+
+      '<div class="tags">'+(p.tags||[]).map(function(t){return '<span>'+esc(t)+'</span>'}).join('')+'</div>'+
+      (p.link?'<a class="go" href="'+esc(p.link)+'" target="_blank" rel="noopener">View project</a>':'')+'</article>';
+  }).join('');
+
+  $('timeline').innerHTML = D.journey.map(function(s){
+    return '<div class="step"><time>'+esc(s.period)+'</time><h3>'+esc(s.title)+'</h3><div class="place">'+esc(s.place)+'</div><p>'+esc(s.details)+'</p></div>';
+  }).join('');
+
+  $('contactNote').textContent = D.contact.note;
+  var mail = $('contactMail'); mail.textContent = D.contact.email; mail.href = 'mailto:' + D.contact.email;
+  var ICON_GH = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>';
+  var ICON_ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+  $('contactLinks').innerHTML = D.contact.links.map(function(l){return '<a href="'+esc(l.url)+'" target="_blank" rel="noopener">'+(/github/i.test(l.label)?ICON_GH:ICON_ARROW)+'<span>'+esc(l.label)+'</span></a>'}).join('');
+  $('footerText').textContent = '© ' + new Date().getFullYear() + ' ' + D.name;
+
+  /* ---------- Theme + menu ---------- */
+  var root = document.documentElement;
+  try { var saved = localStorage.getItem('theme'); root.setAttribute('data-theme', saved || 'dark'); } catch(e){ root.setAttribute('data-theme','dark'); }
+  $('themeBtn').addEventListener('click', function(){
+    this.classList.toggle('flip');
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch(e){}
+  });
+  var menuBtn = $('menuBtn'), navEl = $('nav');
+  menuBtn.addEventListener('click', function(){
+    var open = navEl.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navEl.addEventListener('click', function(e){ if (e.target.tagName === 'A') { navEl.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); } });
+
+  /* ---------- 3D red spider lily (pure CSS 3D transforms) ---------- */
+  var flower = $('flower'), scene = $('scene');
+  var seed = 7; function rnd(){ seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+
+  // Builds a chain of nested segments; each segment bends relative to its parent,
+  // which is what gives the petals and stamens their recurved arc in 3D.
+  function chain(parent, defs, W, spinDeg, opts){
+    var cur = parent;
+    defs.forEach(function(d, i){
+      var s = document.createElement('div');
+      s.className = 'seg';
+      s.style.width = W + 'px';
+      s.style.height = d.h + 'px';
+      s.style.left = (i === 0 ? -W/2 : 0) + 'px';
+      s.style.top = (-d.h) + 'px';
+      s.style.transform = (i === 0 ? 'rotateZ(' + spinDeg + 'deg) ' : '') + 'rotateX(' + d.r + 'deg)';
+      var f = document.createElement('div');
+      f.className = 'face' + (opts.petal ? ' petal-face' : '');
+      if (opts.petal) {
+        var x1 = 50 - d.wb/2, x2 = 50 + d.wb/2, y1 = 50 - d.wt/2, y2 = 50 + d.wt/2;
+        f.style.clipPath = 'polygon(' + x1 + '% 100%,' + x2 + '% 100%,' + y2 + '% 0,' + y1 + '% 0)';
+        f.style.webkitClipPath = f.style.clipPath;
+      }
+      var t0 = i / defs.length, t1 = (i + 1) / defs.length;
+      f.style.background = 'linear-gradient(to top,' + opts.color(t0) + ',' + opts.color(t1) + ')';
+      s.appendChild(f);
+      cur.appendChild(s);
+      cur = s;
+    });
+    return cur;
+  }
+
+  // stem: two crossed planes pointing along -Z so it reads from every angle
+  var stem = document.createElement('div');
+  stem.style.cssText = 'position:absolute;left:0;top:0;transform-style:preserve-3d;transform:rotateX(-90deg)';
+  [0, 90].forEach(function(a){
+    var p = document.createElement('div');
+    p.className = 'stem-plane';
+    p.style.cssText += 'left:-4px;width:8px;height:230px;transform:rotateY(' + a + 'deg)';
+    stem.appendChild(p);
+  });
+  flower.appendChild(stem);
+
+  // six recurved petals
+  for (var i = 0; i < 6; i++) {
+    var hue = 352 + rnd() * 6, lift = (rnd() - .5) * 8, big = i % 2 ? 1 : 1.08;
+    var defs = [
+      { h: 54*big, r: -54 + lift, wb: 40, wt: 62 },
+      { h: 58*big, r: 24,         wb: 62, wt: 70 },
+      { h: 54*big, r: 30,         wb: 70, wt: 52 },
+      { h: 38*big, r: 34,         wb: 52, wt: 2  }
+    ];
+    chain(flower, defs, 40, i * 60 + (rnd() - .5) * 10, {
+      petal: true,
+      color: function(t){ return 'hsl(' + hue + ',86%,' + (14 + t * 36) + '%)'; }
+    });
+  }
+
+  // eight long stamens, arching up and out, tipped with anthers
+  for (var j = 0; j < 8; j++) {
+    var L = 1.15 + rnd() * .25;
+    var sd = [
+      { h: 58*L, r: -74 + (rnd()-.5)*8 },
+      { h: 54*L, r: 17 },
+      { h: 50*L, r: 21 },
+      { h: 44*L, r: 25 }
+    ];
+    var last = chain(flower, sd, 2.6, j * 45 + 22 + (rnd() - .5) * 14, {
+      petal: false,
+      color: function(t){ return 'hsl(354,78%,' + (30 + t * 34) + '%)'; }
+    });
+    var an = document.createElement('div'); an.className = 'anther'; last.appendChild(an);
+  }
+
+  /* ---------- Motion: slow turn, pointer/drag to rotate ---------- */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var spin = 20, tilt = 52, tiltTarget = 52, spinVel = reduce ? 0 : 7; // degrees per second
+  var bloomT0 = null; // set when the loader finishes: the flower opens then
+  var dragging = false, lastX = 0, lastY = 0, k = 1;
+
+  function fit(){ k = Math.max(.52, Math.min(1.08, Math.min(scene.clientWidth / 600, scene.clientHeight / 470))); }
+  fit(); window.addEventListener('resize', fit);
+
+  scene.addEventListener('pointerdown', function(e){ dragging = true; lastX = e.clientX; lastY = e.clientY; scene.setPointerCapture(e.pointerId); });
+  scene.addEventListener('pointermove', function(e){
+    if (dragging) {
+      spin += (e.clientX - lastX) * .5;
+      tiltTarget = Math.max(28, Math.min(78, tiltTarget - (e.clientY - lastY) * .3));
+      lastX = e.clientX; lastY = e.clientY;
+    } else if (e.pointerType === 'mouse') {
+      var r = scene.getBoundingClientRect();
+      tiltTarget = 44 + ((e.clientY - r.top) / r.height) * 22;
+    }
+  });
+  function end(){ dragging = false; }
+  scene.addEventListener('pointerup', end);
+  scene.addEventListener('pointercancel', end);
+
+  var prev = performance.now();
+  function frame(now){
+    var dt = Math.min(.05, (now - prev) / 1000); prev = now;
+    if (!dragging) spin += spinVel * dt;
+    var e = 0;
+    if (bloomT0 !== null) {
+      var pr = Math.min(1, Math.max(0, (now - bloomT0) / 2600));
+      e = reduce ? 1 : 1 - Math.pow(1 - pr, 3);
+      if (!dragging && !reduce) spin += (1 - e) * 200 * dt;
+    }
+    scene.style.opacity = Math.min(1, e * 2.5);
+    tilt += (tiltTarget - tilt) * Math.min(1, dt * 6);
+    var bob = reduce ? 0 : Math.sin(now / 1600) * 6;
+    flower.style.transform = 'translateY(' + bob + 'px) scale(' + (k * (.4 + .6 * e)) + ') rotateX(' + tilt + 'deg) rotateZ(' + spin + 'deg)';
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  /* ---------- Project cards: gentle 3D tilt on hover (pointer devices only) ---------- */
+  if (!reduce && window.matchMedia('(hover:hover)').matches) {
+    document.querySelectorAll('.card').forEach(function(c){
+      c.addEventListener('pointermove', function(e){
+        var r = c.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        c.style.transform = 'rotateY(' + (x * 7) + 'deg) rotateX(' + (-y * 7) + 'deg) translateZ(0)';
+      });
+      c.addEventListener('pointerleave', function(){ c.style.transform = ''; });
+    });
+  }
+
+  /* ---------- Effects: scroll bar, drifting petals, cursor glow, reveals ---------- */
+  $('loaderName').textContent = D.name;
+
+  var bar = $('scrollBar'), ticking = false;
+  function progress(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ')';
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){ if (!ticking) { ticking = true; requestAnimationFrame(progress); } }, { passive: true });
+  progress();
+
+  var hero = $('hero'), drift = $('drift');
+  function sizeDrift(){ drift.style.setProperty('--hh', (hero.offsetHeight + 40) + 'px'); }
+  sizeDrift(); window.addEventListener('resize', sizeDrift);
+  if (!reduce) {
+    for (var n = 0; n < 18; n++) {
+      var sp = document.createElement('span'), sz = 8 + rnd() * 12;
+      sp.style.cssText = 'left:' + (rnd() * 100) + '%;width:' + sz + 'px;height:' + (sz * 1.5) + 'px;opacity:' + (.3 + rnd() * .45) +
+        ';animation-duration:' + (12 + rnd() * 10) + 's,' + (3 + rnd() * 3) + 's;animation-delay:' + (-rnd() * 20) + 's,' + (-rnd() * 5) + 's';
+      drift.appendChild(sp);
+    }
+  }
+  hero.addEventListener('pointermove', function(e){
+    if (e.pointerType !== 'mouse') return;
+    var r = hero.getBoundingClientRect();
+    hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    hero.classList.add('lit');
+  });
+  hero.addEventListener('pointerleave', function(){ hero.classList.remove('lit'); });
+
+  ['.fact', '.skills > div', '.card', '.step', '.contact > *'].forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(el, i){ el.classList.add('reveal'); el.style.setProperty('--d', (i % 4 * .09) + 's'); });
+  });
+  var revealTargets = document.querySelectorAll('.reveal,.sec-head');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: .15, rootMargin: '0px 0px -6% 0px' });
+    revealTargets.forEach(function(t){ io.observe(t); });
+  } else {
+    revealTargets.forEach(function(t){ t.classList.add('in'); });
+  }
+
+  /* ---------- Finish loading: lift the curtain, then bloom the hero ---------- */
+  var loaderEl = $('loader'), t0 = performance.now(), finished = false;
+  function finish(){
+    if (finished) return; finished = true;
+    var wait = Math.max(0, (reduce ? 400 : 2700) - (performance.now() - t0));
+    setTimeout(function(){
+      loaderEl.classList.add('done');
+      docEl.classList.remove('loading');
+      docEl.classList.add('ready');
+      bloomT0 = performance.now();
+      setTimeout(function(){ if (loaderEl.parentNode) loaderEl.parentNode.removeChild(loaderEl); }, 1300);
+    }, wait);
+  }
+  function afterLoad(){ (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(finish, finish); }
+  if (document.readyState === 'complete') afterLoad(); else window.addEventListener('load', afterLoad);
+  setTimeout(finish, 7000); // never leave anyone stuck on the loader
+})();
+</script>
+</body>
+</html>
